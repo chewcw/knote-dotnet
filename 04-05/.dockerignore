@@ -1,0 +1,7 @@
+bin
+obj
+public
+.dockerignore
+.gitignore
+uploads
+kube

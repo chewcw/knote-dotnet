@@ -1,0 +1,41 @@
+﻿@page
+@model IndexModel
+
+<body class="ph3 pt0 pb4 mw7 center sans-serif">
+  <h1 class="f2 mb0"><span class="gold">k</span>note</h1>
+  <p class="f5 mt1 mb4 lh-copy">A simple note-taking app.</p>
+  <form method="post" enctype="multipart/form-data">
+    <ol class="list pl0">
+      <li class="mv3">
+        <label class="fb6 b db mb2">Upload and image</label>
+        <input class="f6 link dim br1 ba b--black-20 ph3 pv2 mb2 dib black bg-white pointer" type="file" asp-for="UploadedFile" />
+        <input class="f6 link dim br1 ba bw1 ph3 pv2 mb2 dib black bg-white pointer ml2"asp-page-handler="Upload" type="submit" />
+      </li>
+
+      <li class="mv3">
+        <label class="fb6 b db mb2">Write your content here</label>
+        <textarea class="f4 db border-box hover-black w-100 measure ba b--black-20 pa2 br2 mb2" rows="5" asp-for="NoteContent"></textarea>
+        <input class="f6 link dim br1 ba bw1 ph3 pv2 mb2 dib black bg-white pointer" asp-page-handler="Submit" type="submit" />
+      </li>
+    </ol>
+  </form>
+
+  @if(Model.Notes != null && Model.Notes.Count > 0)
+  {
+    <ul class="list pl0">
+      <p class="f6 b db mb2">Notes</p>
+      @foreach (var note in Model.Notes)
+      {
+        <li class="mv3 bb bw2 b--light-yellow bg-washed-yellow ph4 pv2">
+          <p class="measure"></p>
+          @Html.Raw(@note.MarkedDescription)
+        </li>
+      }
+    </ul> 
+  }
+  @if(Model.Notes != null && Model.Notes.Count == 0)
+  {
+      <p class="lh-copy f6">You dont't have any notes yet.</p>
+  }
+
+</body>
