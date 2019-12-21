@@ -7,7 +7,7 @@ spec:
     app: knote
   ports:
     - port: 80
-      targetPort: 3000
+      targetPort: 80
   type: LoadBalancer
 ---
 apiVersion: apps/v1
@@ -26,9 +26,9 @@ spec:
     spec:
       containers:
         - name: knote
-          image: learnk8s/knote-js:2.0.0
+          image: chewcw/knote-dotnet:2.0.0
           ports:
-            - containerPort: 3000
+            - containerPort: 80
           env:
             - name: MONGO_URL
               value: mongodb://mongo:27017/dev
